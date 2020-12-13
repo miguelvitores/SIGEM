@@ -17,10 +17,9 @@ class NaveNodriza(models.Model):
 
 class Aeronave(models.Model):
     nombre = models.CharField(max_length=64)
-    max_marcianos = models.IntegerField(default=4)
+    max_marcianos = models.IntegerField('aforo maximo nave', default=4)
     nave_origen = models.ForeignKey(NaveNodriza, related_name='nave_origen', on_delete=models.CASCADE)
     nave_destino = models.ForeignKey(NaveNodriza, related_name='nave_destino', on_delete=models.CASCADE)
-    pasajeros = models.ManyToManyField(Marciano)
 
     def __str__(self):
         return self.nombre
@@ -37,5 +36,7 @@ class BajarPasajero(models.Model):
 
 
 class Revision(models.Model):
-    nombre_revisor = models.CharField(max_length=32)
+    nombre_revisor = models.CharField('nombre del revisor', max_length=32)
     aeronave_revisada = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
+    fecha_revision = models.DateTimeField('fecha de revision')
+    pasajeros = models.ManyToManyField(Marciano)
