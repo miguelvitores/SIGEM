@@ -1,4 +1,6 @@
 from django.db import models
+from django.forms import ModelForm
+from django.urls import reverse
 
 
 class Marciano(models.Model):
@@ -14,6 +16,15 @@ class NaveNodriza(models.Model):
     def __str__(self):
         return self.nombre
 
+    def get_absolute_url(self):
+        return reverse('sigemapp:listar_nn')
+
+
+class NaveNodrizaForm(ModelForm):
+    class Meta:
+        model = NaveNodriza
+        fields = '__all__'
+
 
 class Aeronave(models.Model):
     nombre = models.CharField(max_length=64)
@@ -23,6 +34,15 @@ class Aeronave(models.Model):
 
     def __str__(self):
         return self.nombre
+
+    def get_absolute_url(self):
+        return reverse('sigemapp:listar_aeronaves')
+
+
+class AeronaveForm(ModelForm):
+    class Meta:
+        model = Aeronave
+        fields = '__all__'
 
 
 class AsignarPasajero(models.Model):

@@ -55,3 +55,14 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+li {
+  list-style: none;
+}
+
+form li {
+  padding: 0;
+  display: block;
+  list-style: none;
+  margin: 10px 0 0 0;
+}

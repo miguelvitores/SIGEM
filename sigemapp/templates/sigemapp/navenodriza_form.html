@@ -1,0 +1,17 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+    <p></p>
+    <h1>Crear nueva nave nodriza</h1>
+    <p></p>
+    <form method="post">
+        {% csrf_token %}
+        <li>
+            <label for="nombre">Nombre nave nodriza</label>
+            <input type="text" name="nombre" id="nombre" value="">
+        </li>
+        <li>
+            <input type="submit" value="Crear">
+        </li>
+    </form>
+
+{% endblock %}

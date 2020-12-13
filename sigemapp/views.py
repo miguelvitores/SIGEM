@@ -10,15 +10,30 @@ class IndexView(generic.TemplateView):
     template_name = 'sigemapp/index.html'
 
 
-class CrearNaveNodrizasView(generic.CreateView):
-    template_name = 'sigemapp/crear_nn.html'
+class ListarNaveNodrizasView(generic.ListView):
+    template_name = 'sigemapp/listar_nn.html'
+    context_object_name = 'naves_nodrizas'
 
     def get_queryset(self):
         return NaveNodriza.objects.all()
 
 
-class ListarNaveNodrizasView(generic.ListView):
-    template_name = 'sigemapp/listar_nn.html'
+class NaveNodrizaCreate(generic.edit.CreateView):
+    model = NaveNodriza
+    fields = '__all__'
+
+
+class ListarAeronavesView(generic.ListView):
+    template_name = 'sigemapp/listar_aeronaves.html'
+    context_object_name = 'aeronaves'
+
+    def get_queryset(self):
+        return Aeronave.objects.all()
+
+
+class AeronaveCreate(generic.edit.CreateView):
+    model = Aeronave
+    fields = '__all__'
     context_object_name = 'naves_nodrizas'
 
     def get_queryset(self):

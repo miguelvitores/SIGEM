@@ -1,0 +1,14 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+
+    {% if aeronaves %}
+        <ul>
+        {% for a in aeronaves %}
+            <li>{{ a.nombre }} - {{ a.max_marcianos }} pasajeros máximo - Nave origen: {{ a.nave_origen.nombre }} - Nave destino: {{ a.nave_destino.nombre }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ninguna aeronave en la base de datos.</p>
+    {% endif %}
+
+{% endblock %}

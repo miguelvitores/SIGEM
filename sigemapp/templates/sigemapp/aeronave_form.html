@@ -1,0 +1,41 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+    <p></p>
+    <h1>Crear nueva aeronave</h1>
+    <p></p>
+    <form method="post">
+        {% csrf_token %}
+        <li>
+            <label for="nombre">Nombre aeronave</label>
+            <input type="text" name="nombre" id="nombre" value="">
+        </li>
+        <li>
+            <label for="max_marcianos">Aforo máximo</label>
+            <input type="number" name="max_marcianos" id="max_marcianos" value="4" min="0">
+        </li>
+        <li>
+            <label for="nave_origen">Nombre nave nodriza origen</label>
+            {% if naves_nodrizas %}
+                {% for n in naves_nodrizas %}
+                    <input type="radio" name="nave_origen" id="nave_origen{{ forloop.counter }}" value="{{ n.nombre }}">
+                {% endfor %}
+            {% else %}
+                <p>No hay ninguna nave nodriza en la base de datos.</p>
+            {% endif %}
+        </li>
+        <li>
+            <label for="nave_destino">Nombre nave nodriza destino</label>
+            {% if naves_nodrizas %}
+                {% for n in naves_nodrizas %}
+                    <input type="radio" name="nave_destino" id="nave_destino{{ forloop.counter }}" value="{{ n.nombre }}">
+                {% endfor %}
+            {% else %}
+                <p>No hay ninguna nave nodriza en la base de datos.</p>
+            {% endif %}
+        </li>
+        <li>
+            <input type="submit" value="Crear">
+        </li>
+    </form>
+
+{% endblock %}
