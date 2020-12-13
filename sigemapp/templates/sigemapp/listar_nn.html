@@ -1,0 +1,14 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+
+    {% if naves_nodrizas %}
+        <ul>
+        {% for n in naves_nodrizas %}
+            <li>{{ n.nombre }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ninguna nave nodriza en la base de datos.</p>
+    {% endif %}
+
+{% endblock %}
