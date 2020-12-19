@@ -1,0 +1,14 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+
+    {% if asignar_pasajero %}
+        <ul>
+        {% for ap in asignar_pasajero %}
+            <li>{{ ap }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ninguna asignación de pasajeros a una aeronave en la base de datos.</p>
+    {% endif %}
+
+{% endblock %}

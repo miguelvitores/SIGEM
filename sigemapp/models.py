@@ -43,10 +43,22 @@ class AsignarPasajero(models.Model):
     aeronave = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
     pasajero = models.ForeignKey(Marciano, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.aeronave.__str__() + " - " + self.pasajero.__str__()
+
+    def get_absolute_url(self):
+        return reverse('sigemapp:listar_ap')
+
 
 class BajarPasajero(models.Model):
     aeronave = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
     pasajero = models.ForeignKey(Marciano, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.aeronave.__str__() + " - " + self.pasajero.__str__()
+
+    def get_absolute_url(self):
+        return reverse('sigemapp:listar_bp')
 
 
 class Revision(models.Model):
@@ -54,3 +66,6 @@ class Revision(models.Model):
     aeronave_revisada = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
     fecha_revision = models.DateTimeField('fecha de revision')
     pasajeros = models.ManyToManyField(Marciano)
+
+    def __str__(self):
+        return self.nombre_revisor + " - " + self.aeronave_revisada.__str__()

@@ -39,3 +39,37 @@ class AeronaveCreate(generic.edit.CreateView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class AsignarPasajeroCreate(generic.edit.CreateView):
+    model = AsignarPasajero
+    form_class = CreateAsignarPasajeroForm
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class ListarAsignarPasajeroView(generic.ListView):
+    template_name = 'sigemapp/listar_ap.html'
+    context_object_name = 'asignar_pasajero'
+
+    def get_queryset(self):
+        return AsignarPasajero.objects.all()
+
+
+class BajarPasajeroCreate(generic.edit.CreateView):
+    model = BajarPasajero
+    form_class = CreateBajarPasajeroForm
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class ListarBajarPasajeroView(generic.ListView):
+    template_name = 'sigemapp/listar_bp.html'
+    context_object_name = 'bajar_pasajero'
+
+    def get_queryset(self):
+        return BajarPasajero.objects.all()

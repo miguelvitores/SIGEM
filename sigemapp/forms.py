@@ -19,3 +19,33 @@ class CreateAeronaveForm(forms.ModelForm):
     class Meta:
         model = Aeronave
         fields = ['nombre', 'max_marcianos', 'nave_origen', 'nave_destino']
+
+
+class CreateAsignarPasajeroForm(forms.ModelForm):
+    aeronave = forms.ModelChoiceField(
+        label="Aeronave",
+        queryset=Aeronave.objects.all()
+    )
+    pasajero = forms.ModelChoiceField(
+        label="Marciano que se sube a la aeronave",
+        queryset=Marciano.objects.all()
+    )
+
+    class Meta:
+        model = AsignarPasajero
+        fields = ['aeronave', 'pasajero']
+
+
+class CreateBajarPasajeroForm(forms.ModelForm):
+    aeronave = forms.ModelChoiceField(
+        label="Aeronave",
+        queryset=AsignarPasajero.objects.values_list('aeronave__nombre', flat=True).distinct()
+    )
+    pasajero = forms.ModelChoiceField(
+        label="Marciano que se baja de la aeronave",
+        queryset=AsignarPasajero.objects.values_list('pasajero__nombre', flat=True).distinct()
+    )
+
+    class Meta:
+        model = BajarPasajero
+        fields = ['aeronave', 'pasajero']

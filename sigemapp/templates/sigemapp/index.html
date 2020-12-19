@@ -45,6 +45,24 @@
                             <a class="dropdown-item" href="{% url 'sigemapp:crear_aeronave' %}">Crear aeronave</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" id="dropdFot" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Asignación pasajero
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdFot">
+                            <a class="dropdown-item" href="{% url 'sigemapp:listar_ap' %}">Listar asignaciones pasajeros</a>
+                            <a class="dropdown-item" href="{% url 'sigemapp:crear_ap' %}">Crear asignación pasajero</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" id="dropdFot" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Baja pasajero
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdFot">
+                            <a class="dropdown-item" href="{% url 'sigemapp:listar_bp' %}">Listar bajas pasajeros</a>
+                            <a class="dropdown-item" href="{% url 'sigemapp:crear_bp' %}">Crear baja de pasajero</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
 

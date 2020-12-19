@@ -1,0 +1,14 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+
+    {% if bajar_pasajero %}
+        <ul>
+        {% for bp in bajar_pasajero %}
+            <li>{{ bp }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ninguna baja de pasajeros de una aeronave en la base de datos.</p>
+    {% endif %}
+
+{% endblock %}

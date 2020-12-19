@@ -9,4 +9,8 @@ urlpatterns = [
     path('naves_nodrizas/crear/', views.NaveNodrizaCreate.as_view(), name='crear_nn'),
     path('aeronaves/listar/', views.ListarAeronavesView.as_view(), name='listar_aeronaves'),
     path('aeronaves/crear/', views.AeronaveCreate.as_view(), name='crear_aeronave'),
+    path('asignar_pasajero/listar/', views.ListarAsignarPasajeroView.as_view(), name='listar_ap'),
+    path('asignar_pasajero/crear/', views.AsignarPasajeroCreate.as_view(), name='crear_ap'),
+    path('bajar_pasajero/listar/', views.ListarBajarPasajeroView.as_view(), name='listar_bp'),
+    path('bajar_pasajero/crear/', views.BajarPasajeroCreate.as_view(), name='crear_bp'),
 ]
