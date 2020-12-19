@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 
 from .models import *
+from .forms import *
 
 
 class IndexView(generic.TemplateView):
@@ -33,8 +34,8 @@ class ListarAeronavesView(generic.ListView):
 
 class AeronaveCreate(generic.edit.CreateView):
     model = Aeronave
-    fields = '__all__'
-    context_object_name = 'naves_nodrizas'
+    form_class = CreateAeronaveForm
 
-    def get_queryset(self):
-        return NaveNodriza.objects.all()
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

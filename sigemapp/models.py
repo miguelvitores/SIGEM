@@ -39,12 +39,6 @@ class Aeronave(models.Model):
         return reverse('sigemapp:listar_aeronaves')
 
 
-class AeronaveForm(ModelForm):
-    class Meta:
-        model = Aeronave
-        fields = '__all__'
-
-
 class AsignarPasajero(models.Model):
     aeronave = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
     pasajero = models.ForeignKey(Marciano, on_delete=models.CASCADE)
