@@ -2,7 +2,6 @@ from django.db import models
 from django.forms import ModelForm
 from django.urls import reverse
 
-
 class Marciano(models.Model):
     nombre = models.CharField(max_length=32)
 
@@ -50,7 +49,7 @@ class AsignarPasajero(models.Model):
         return reverse('sigemapp:listar_ap')
 
 
-class SeleccionarPasajeroBajarO(models.Model):
+class SeleccionarPasajeroBajar(models.Model):
     altaPasajero = models.ForeignKey(AsignarPasajero, on_delete=models.CASCADE , default=0)
     id = altaPasajero.__str__()
 
@@ -62,10 +61,14 @@ class SeleccionarPasajeroBajarO(models.Model):
 
 
 class Revision(models.Model):
+    id = models.IntegerField("id de la revision", primary_key=True)
     nombre_revisor = models.CharField('nombre del revisor', max_length=32)
     aeronave_revisada = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
-    fecha_revision = models.DateTimeField('fecha de revision')
+    fecha_revision = models.DateField('fecha de revision',auto_now=False, auto_now_add=False)
     pasajeros = models.ManyToManyField(Marciano)
 
     def __str__(self):
-        return self.nombre_revisor + " - " + self.aeronave_revisada.__str__()
+        return self.nombre_revisor + " - " + self.aeronave_revisada.__str__() + " - " + self.fecha_revision.__str__()
+
+    def get_absolute_url(self):
+        return reverse('sigemapp:listar_rev')

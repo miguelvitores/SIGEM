@@ -42,5 +42,18 @@ class BajarPasajeroForm(forms.ModelForm):
         queryset=AsignarPasajero.objects.all()
     )
     class Meta:
-        model = SeleccionarPasajeroBajarO
+        model = SeleccionarPasajeroBajar
         fields = ['altaPasajero']
+
+class RevisarAeronaveForm(forms.ModelForm):
+
+    aeronave_revisada = forms.ModelChoiceField(
+        label="Aeronave Revisada",
+        queryset=Aeronave.objects.all()
+    )
+    class Meta:
+        model = Revision
+        fields = ['id','nombre_revisor', 'aeronave_revisada', 'fecha_revision']
+        widgets = {
+        'fecha_revision': forms.DateInput(format=('%d/%m/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+    }

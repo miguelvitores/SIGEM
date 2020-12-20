@@ -12,5 +12,7 @@ urlpatterns = [
     path('gestionar_pasajero/listar/', views.ListarAsignarPasajeroView.as_view(), name='listar_ap'),
     path('gestionar_pasajero/crear/', views.AsignarPasajeroCreate.as_view(), name='crear_ap'),
     path('gestionar_pasajero/<pk>/bajar/', views.BajarPasajero.as_view()),
-    path('gestionar_pasajero/bajar/', views.SeleccionarPasajeroBajar.as_view(), name='bajar_ap')
+    path('gestionar_pasajero/bajar/', views.SeleccionarPasajeroBajar.as_view(), name='bajar_ap'),
+    path('revisar/listar/', views.ListarRevisionView.as_view(), name='listar_rev'),
+    path('revisar/crear/', views.RevisionCreate.as_view(), name='crear_rev')
 ]

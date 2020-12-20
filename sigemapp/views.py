@@ -58,7 +58,7 @@ class ListarAsignarPasajeroView(generic.ListView):
         return AsignarPasajero.objects.all()
 
 class SeleccionarPasajeroBajar(generic.edit.CreateView):
-    model = SeleccionarPasajeroBajarO
+    model = SeleccionarPasajeroBajar
     form_class = BajarPasajeroForm
 
     def form_valid(self, form):
@@ -67,8 +67,6 @@ class SeleccionarPasajeroBajar(generic.edit.CreateView):
         alta = form.save(commit=False)
         x = alta.altaPasajero_id
         return HttpResponseRedirect("http://127.0.0.1:8000/sigemapp/gestionar_pasajero/" + str(x) + "/bajar/")
-
-
 
 class BajarPasajero(generic.edit.DeleteView): 
     model = AsignarPasajero 
@@ -80,3 +78,22 @@ class BajarPasajero(generic.edit.DeleteView):
             return HttpResponseRedirect("http://127.0.0.1:8000/sigemapp/gestionar_pasajero/listar/")
         else:
             return super(BajarPasajero, self).post(request, *args, **kwargs)
+
+
+class ListarRevisionView(generic.ListView):
+    template_name = 'sigemapp/listar_rev.html'
+    context_object_name = 'revision'
+
+    def get_queryset(self):
+        return Revision.objects.all()
+
+class RevisionCreate(generic.edit.CreateView):
+    model = Revision
+    form_class = RevisarAeronaveForm
+
+    def form_valid(self, form):
+        """if (AsignarPasajero.objects.filter(aeronave = form.aeronave_revisada) != null):
+            form.pasajeros = AsignarPasajero.objects.filter(aeronave = form.aeronave_revisada)"""
+
+        form.save()
+        return super().form_valid(form)

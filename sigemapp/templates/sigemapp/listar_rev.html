@@ -1,0 +1,14 @@
+{% extends 'sigemapp/index.html' %}
+{% block content %}
+
+    {% if revision %}
+        <ul>
+        {% for rev in revision %}
+            <li>{{ rev }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ninguna Revisión en la base de datos.</p>
+    {% endif %}
+
+{% endblock %}
