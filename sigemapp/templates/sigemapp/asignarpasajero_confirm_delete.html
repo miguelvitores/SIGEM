@@ -1,0 +1,5 @@
+<form method="post">{% csrf_token %} 
+    <p>¿Seguro que quieres bajar al marciano "{{ object }}"?</p> 
+    <input type="submit" value="Confirm"> 
+    <input type="submit" name="cancel" value="Cancel" /> 
+</form> 

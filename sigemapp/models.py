@@ -50,15 +50,15 @@ class AsignarPasajero(models.Model):
         return reverse('sigemapp:listar_ap')
 
 
-class BajarPasajero(models.Model):
-    aeronave = models.ForeignKey(Aeronave, on_delete=models.CASCADE)
-    pasajero = models.ForeignKey(Marciano, on_delete=models.CASCADE)
+class SeleccionarPasajeroBajarO(models.Model):
+    altaPasajero = models.ForeignKey(AsignarPasajero, on_delete=models.CASCADE , default=0)
+    id = altaPasajero.__str__()
 
     def __str__(self):
-        return self.aeronave.__str__() + " - " + self.pasajero.__str__()
-
+        return self.altaPasajero.__str__()
+    
     def get_absolute_url(self):
-        return reverse('sigemapp:listar_bp')
+        return reverse('sigemapp:listar_ap')
 
 
 class Revision(models.Model):

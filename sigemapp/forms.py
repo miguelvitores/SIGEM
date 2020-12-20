@@ -36,16 +36,11 @@ class CreateAsignarPasajeroForm(forms.ModelForm):
         fields = ['aeronave', 'pasajero']
 
 
-class CreateBajarPasajeroForm(forms.ModelForm):
-    aeronave = forms.ModelChoiceField(
-        label="Aeronave",
-        queryset=AsignarPasajero.objects.values_list('aeronave__nombre', flat=True).distinct()
+class BajarPasajeroForm(forms.ModelForm):
+    altaPasajero = forms.ModelChoiceField(
+        label="Pasajero",
+        queryset=AsignarPasajero.objects.all()
     )
-    pasajero = forms.ModelChoiceField(
-        label="Marciano que se baja de la aeronave",
-        queryset=AsignarPasajero.objects.values_list('pasajero__nombre', flat=True).distinct()
-    )
-
     class Meta:
-        model = BajarPasajero
-        fields = ['aeronave', 'pasajero']
+        model = SeleccionarPasajeroBajarO
+        fields = ['altaPasajero']

@@ -57,19 +57,26 @@ class ListarAsignarPasajeroView(generic.ListView):
     def get_queryset(self):
         return AsignarPasajero.objects.all()
 
-
-class BajarPasajeroCreate(generic.edit.CreateView):
-    model = BajarPasajero
-    form_class = CreateBajarPasajeroForm
+class SeleccionarPasajeroBajar(generic.edit.CreateView):
+    model = SeleccionarPasajeroBajarO
+    form_class = BajarPasajeroForm
 
     def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+        #form.save()
+        #return super().form_valid(form)
+        alta = form.save(commit=False)
+        x = alta.altaPasajero_id
+        return HttpResponseRedirect("http://127.0.0.1:8000/sigemapp/gestionar_pasajero/" + str(x) + "/bajar/")
 
 
-class ListarBajarPasajeroView(generic.ListView):
-    template_name = 'sigemapp/listar_bp.html'
-    context_object_name = 'bajar_pasajero'
 
-    def get_queryset(self):
-        return BajarPasajero.objects.all()
+class BajarPasajero(generic.edit.DeleteView): 
+    model = AsignarPasajero 
+      
+    success_url ="http://127.0.0.1:8000/sigemapp/gestionar_pasajero/listar/"
+
+    def post(self, request, *args, **kwargs):
+        if "cancel" in request.POST:
+            return HttpResponseRedirect("http://127.0.0.1:8000/sigemapp/gestionar_pasajero/listar/")
+        else:
+            return super(BajarPasajero, self).post(request, *args, **kwargs)
